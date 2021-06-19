@@ -7,7 +7,6 @@ name: test-actions
 
 on:
   push:
-    branches: [ master ]
     # Publish semver tags as releases.
     tags: [ 'v[0-9]+.[0-9]+' ]
 
@@ -27,5 +26,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ github.repository }}/test-github-actions:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository }}/test-github-actions:${{ github.ref }}
           
