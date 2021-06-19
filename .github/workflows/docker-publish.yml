@@ -26,5 +26,5 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ github.repository }}/test-github-actions:${{ github.ref }}
+          tags: ghcr.io/${{ github.repository }}/test-github-actions::${GITHUB_REF/refs\/tags\//}
           
