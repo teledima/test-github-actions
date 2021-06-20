@@ -13,7 +13,7 @@ jobs:
         uses: haya14busa/action-cond@v1
         id: get_version
         with:
-          cond: ${{ github.ref == 'refs/heads/master' }}
+          cond: ${{ github.ref != 'refs/heads/master' }}
           if_true: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
           if_false: echo ::set-output name=VERSION::latest
       - name: Checkout repository
