@@ -10,8 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get the version
+        uses: haya14busa/action-cond@v1
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+        with:
+          cond: ${{ github.ref == 'refs/heads/master' }}
+          if_true: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+          if_false: echo ::set-output name=VERSION::latest
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Log in to Github Container Registry
