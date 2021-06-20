@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Set image name
         id: set_image
-        run: echo ::set-output name=IMAGE_NAME::ghcr.io/${{ github.repository }}/test-github-actions:${{ steps.get_version.outputs.value }}
+        run: echo ::set-output name=IMAGE_NAME::gcr.io/${{ github.repository }}/test-github-actions:${{ steps.get_version.outputs.value }}
       - name: Build container image
         uses: docker/build-push-action@v2
         with:
