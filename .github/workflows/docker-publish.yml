@@ -11,8 +11,6 @@ jobs:
 
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
-        env:
-          IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
         steps:
         - name: Get the version
           uses: haya14busa/action-cond@v1
@@ -24,7 +22,7 @@ jobs:
             
         - name: Set image name
           id: set_image
-          run: echo ::set-output name=IMAGE_NAME::gcr.io/${{ github.repository }}/test-github-actions:${{ steps.get_version.outputs.value }}
+          run: echo ::set-output name=IMAGE_NAME::gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:${{ steps.get_version.outputs.value }}
         
         - name: Login
           uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
