@@ -2,7 +2,6 @@ name: test-actions
 
 on:
   push:
-    branches: [ 'master' ]
     tags: [ 'v[0-9]+.[0-9]+' ]
 
 jobs:
@@ -25,7 +24,7 @@ jobs:
           run: echo ::set-output name=IMAGE_NAME::gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:${{ steps.get_version.outputs.value }}
         
         - name: Login
-          uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+          uses: google-github-actions/setup-gcloud@master
           with:
             project_id: ${{ secrets.GCP_PROJECT_ID }}
             service_account_email: ${{ secrets.GCP_EMAIL }}
